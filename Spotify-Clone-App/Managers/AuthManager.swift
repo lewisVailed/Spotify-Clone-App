@@ -12,6 +12,11 @@ final class AuthManager {
     
     private init() {}
     
+    struct Constants {
+        static let clientID = "5d3e7eb22ac54d64be9c7d0fdfdc4e31"
+        static let clientSecret = "e5faefe4c81d4c99b94fdd628cac3534"
+    }
+    
     var isSignedIn: Bool {
         return false
     }

@@ -29,6 +29,7 @@
 		D78F9DF8281E9FCB0002A541 /* Singles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F9DF7281E9FCB0002A541 /* Singles.swift */; };
 		D78F9DFA281E9FF00002A541 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F9DF9281E9FF00002A541 /* Artists.swift */; };
 		D78F9DFC281EA0100002A541 /* Profiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F9DFB281EA0100002A541 /* Profiles.swift */; };
+		D78F9DFE281ECB840002A541 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F9DFD281ECB840002A541 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		D78F9DF7281E9FCB0002A541 /* Singles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singles.swift; sourceTree = "<group>"; };
 		D78F9DF9281E9FF00002A541 /* Artists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		D78F9DFB281EA0100002A541 /* Profiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profiles.swift; sourceTree = "<group>"; };
+		D78F9DFD281ECB840002A541 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				D73B9B03281E94F0005C376A /* Assets.xcassets */,
 				D73B9AFA281E94EE005C376A /* AppDelegate.swift */,
 				D73B9AFC281E94EE005C376A /* SceneDelegate.swift */,
+				D78F9DFD281ECB840002A541 /* Extension.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				D78F9DFA281E9FF00002A541 /* Artists.swift in Sources */,
 				D78F9DEA281E9DC70002A541 /* PlayingSongViewController.swift in Sources */,
 				D78F9DD7281E9BC60002A541 /* TabBarViewController.swift in Sources */,
+				D78F9DFE281ECB840002A541 /* Extension.swift in Sources */,
 				D78F9DFC281EA0100002A541 /* Profiles.swift in Sources */,
 				D78F9DE3281E9D400002A541 /* HeadScreenViewController.swift in Sources */,
 				D73B9AFF281E94EE005C376A /* HomeViewController.swift in Sources */,
