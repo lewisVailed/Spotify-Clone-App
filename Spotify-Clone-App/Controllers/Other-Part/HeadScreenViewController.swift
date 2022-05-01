@@ -15,7 +15,7 @@ class HeadScreenViewController: UIViewController {
         button.setTitle("Sign In With Spotify", for: .normal)
         button.setTitleColor(.systemGreen, for: .normal)
         button.setTitleShadowColor(.black, for: .normal)
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 20
         return button
     }()
     
@@ -31,7 +31,12 @@ class HeadScreenViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        signInButton.frame = CGRect(x: 20, y: 1, width: 200, height: 50)
+        signInButton.frame = CGRect(
+            x: 20,
+            y: view.height-50-view.safeAreaInsets.bottom,
+            width: view.width-40,
+            height: 50
+        )
         
     }
     
