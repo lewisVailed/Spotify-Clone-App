@@ -10,14 +10,17 @@ import WebKit
 
 class AuthViewController: UIViewController, WKNavigationDelegate {
 
-    private var webView: WKWebView {
+    private let webView: WKWebView = {
         let preferenses = WKWebpagePreferences()
         preferenses.allowsContentJavaScript = true
         let configuration = WKWebViewConfiguration()
         configuration.defaultWebpagePreferences = preferenses
         let webView = WKWebView(frame: .zero, configuration: configuration)
         return webView
-    }
+    }()
+    
+    
+    public var completionHandler: ((Bool) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,10 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         view.backgroundColor = .systemBackground
         webView.navigationDelegate = self
         view.addSubview(webView)
+        guard let url = AuthManager.shared.signInURL else {
+            return
+        }
+        webView.load(URLRequest(url: url))
     }
     
     override func viewDidLayoutSubviews() {
