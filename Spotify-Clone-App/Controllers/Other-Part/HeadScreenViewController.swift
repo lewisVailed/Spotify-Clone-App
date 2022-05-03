@@ -19,12 +19,20 @@ class HeadScreenViewController: UIViewController {
         return button
     }()
     
+    private let myImageView: UIImageView = {
+        var myImageView = UIImageView()
+        myImageView.image = UIImage(named: "")
+        myImageView.layer.cornerRadius = 50
+        return myImageView
+        
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Spotify"
         view.backgroundColor = .systemGreen
         view.addSubview(signInButton)
+        view.addSubview(myImageView)
         signInButton.addTarget(self, action: #selector(didTapSignInButton), for: .touchUpInside)
     
     }
@@ -36,6 +44,12 @@ class HeadScreenViewController: UIViewController {
             y: view.height-50-view.safeAreaInsets.bottom,
             width: view.width-40,
             height: 50
+        )
+        myImageView.frame = CGRect(
+            x: view.left,
+            y: view.top+view.safeAreaInsets.top,
+            width: view.width+view.safeAreaInsets.left-view.safeAreaInsets.right,
+            height: view.height+view.safeAreaInsets.top+view.safeAreaInsets.bottom-420
         )
         
     }
