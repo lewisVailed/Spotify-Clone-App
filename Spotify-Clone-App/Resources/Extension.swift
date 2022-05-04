@@ -45,4 +45,4 @@ extension UIColor {
     }
 }
 
-let spotifyGreen = UIColor(red: 30, green: 215, blue: 96)
+var spotifyGreen = UIColor(red: 29, green: 185, blue: 92)

@@ -21,7 +21,7 @@ class HeadScreenViewController: UIViewController {
     
     private let myImageView: UIImageView = {
         var myImageView = UIImageView()
-        myImageView.image = UIImage(named: "")
+        myImageView.image = UIImage(named: "white_theme")
         myImageView.layer.cornerRadius = 50
         return myImageView
         
