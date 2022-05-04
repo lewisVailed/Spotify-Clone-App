@@ -12,7 +12,7 @@ class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Library"
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = spotifyGreen
         
     }
     

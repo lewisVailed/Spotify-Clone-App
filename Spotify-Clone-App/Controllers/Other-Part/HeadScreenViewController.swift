@@ -13,7 +13,7 @@ class HeadScreenViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .white
         button.setTitle("Sign In With Spotify", for: .normal)
-        button.setTitleColor(.systemGreen, for: .normal)
+        button.setTitleColor(spotifyGreen, for: .normal)
         button.setTitleShadowColor(.black, for: .normal)
         button.layer.cornerRadius = 20
         return button
@@ -30,7 +30,7 @@ class HeadScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Spotify"
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = spotifyGreen
         view.addSubview(signInButton)
         view.addSubview(myImageView)
         signInButton.addTarget(self, action: #selector(didTapSignInButton), for: .touchUpInside)
