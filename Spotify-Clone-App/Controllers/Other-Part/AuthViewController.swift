@@ -25,6 +25,7 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Sign In"
+        
         view.backgroundColor = .systemBackground
         webView.navigationDelegate = self
         view.addSubview(webView)
@@ -39,6 +40,12 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         webView.frame = view.bounds
     }
 
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        guard let url = webView.url else {
+            return
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

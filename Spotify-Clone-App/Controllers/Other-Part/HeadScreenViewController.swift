@@ -19,10 +19,18 @@ class HeadScreenViewController: UIViewController {
         return button
     }()
     
-    private let myImageView: UIImageView = {
+    private let myDarkImageView: UIImageView = {
         var myImageView = UIImageView()
-        myImageView.image = UIImage(named: "white_theme")
         myImageView.layer.cornerRadius = 50
+        myImageView.image = UIImage(named: "dark_theme")
+        return myImageView
+        
+    }()
+    
+    private let myLightImageView: UIImageView = {
+        var myImageView = UIImageView()
+        myImageView.layer.cornerRadius = 50
+        myImageView.image = UIImage(named: "light_theme")
         return myImageView
         
     }()
@@ -30,9 +38,17 @@ class HeadScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Spotify"
+        view.overrideUserInterfaceStyle = .light
         view.backgroundColor = spotifyGreen
         view.addSubview(signInButton)
-        view.addSubview(myImageView)
+        view.addSubview(myLightImageView)
+        // this is not working
+        /* if view.overrideUserInterfaceStyle == .dark {
+            view.addSubview(myDarkImageView)
+        } else if view.overrideUserInterfaceStyle == .light {
+            view.addSubview(myLightImageView)
+        }
+         */
         signInButton.addTarget(self, action: #selector(didTapSignInButton), for: .touchUpInside)
     
     }
@@ -45,13 +61,18 @@ class HeadScreenViewController: UIViewController {
             width: view.width-40,
             height: 50
         )
-        myImageView.frame = CGRect(
+        myDarkImageView.frame = CGRect(
             x: view.left,
             y: view.top+view.safeAreaInsets.top,
             width: view.width+view.safeAreaInsets.left-view.safeAreaInsets.right,
             height: view.height+view.safeAreaInsets.top+view.safeAreaInsets.bottom-420
         )
-        
+        myLightImageView.frame = CGRect(
+            x: view.left,
+            y: view.top+view.safeAreaInsets.top,
+            width: view.width+view.safeAreaInsets.left-view.safeAreaInsets.right,
+            height: view.height+view.safeAreaInsets.top+view.safeAreaInsets.bottom-420
+        )
     }
     
     @objc func didTapSignInButton() {
@@ -64,6 +85,7 @@ class HeadScreenViewController: UIViewController {
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     
     private func handleSignIn(success: Bool) {
         // Log user or catch error
