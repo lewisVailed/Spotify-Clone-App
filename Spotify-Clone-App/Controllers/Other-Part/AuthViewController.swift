@@ -44,6 +44,13 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         guard let url = webView.url else {
             return
         }
+        
+        // Exchange for access token
+        guard let code = URLComponents(string: url.absoluteString)?.queryItems?.first(where: { $0.name == "code" })?.value else {
+            return
+        }
+        
+        print("Code: \(code)")
     }
     
     /*

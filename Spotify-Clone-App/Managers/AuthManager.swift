@@ -45,4 +45,18 @@ final class AuthManager {
         return nil
     }
     
+    private func exchangeCodeForToken(
+        code: String,
+        completion: @escaping ((Bool) -> Void)
+    ) {
+        // get token
+    }
+    
+    private func refreshAccessToken() {
+        
+    }
+    
+    private func cacheToken() {
+        
+    }
 }

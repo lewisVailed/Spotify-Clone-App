@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D703B0B2282E917400865172 /* BackgroundAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D703B0B1282E917400865172 /* BackgroundAnimation.swift */; };
 		D73B9AFB281E94EE005C376A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73B9AFA281E94EE005C376A /* AppDelegate.swift */; };
 		D73B9AFD281E94EE005C376A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73B9AFC281E94EE005C376A /* SceneDelegate.swift */; };
 		D73B9AFF281E94EE005C376A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73B9AFE281E94EE005C376A /* HomeViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D703B0B1282E917400865172 /* BackgroundAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundAnimation.swift; sourceTree = "<group>"; };
 		D73B9AF7281E94EE005C376A /* Spotify-Clone-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Clone-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73B9AFA281E94EE005C376A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D73B9AFC281E94EE005C376A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D703B0AE282E912400865172 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				D703B0B1282E917400865172 /* BackgroundAnimation.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		D73B9AEE281E94EE005C376A = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 		D73B9AF9281E94EE005C376A /* Spotify-Clone-App */ = {
 			isa = PBXGroup;
 			children = (
+				D703B0AE282E912400865172 /* Animations */,
 				D73B9B13281E9673005C376A /* Resources */,
 				D73B9B12281E9669005C376A /* Managers */,
 				D73B9B11281E9645005C376A /* View-Models */,
@@ -254,6 +265,7 @@
 			files = (
 				D78F9DE6281E9D710002A541 /* SettingProfileViewController.swift in Sources */,
 				D78F9DF6281E9F990002A541 /* Playlist.swift in Sources */,
+				D703B0B2282E917400865172 /* BackgroundAnimation.swift in Sources */,
 				D78F9DF0281E9EB10002A541 /* AuthManager.swift in Sources */,
 				D78F9DDA281E9C2B0002A541 /* SearchViewController.swift in Sources */,
 				D78F9DE8281E9D960002A541 /* ProfileViewController.swift in Sources */,
