@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class AuthManager {
     static let shared = AuthManager()
@@ -27,23 +28,28 @@ final class AuthManager {
     }
     
     var isSignedIn: Bool {
-        return false
+        return accessToken != nil
     }
     
     private var tokenExpirationDate: Date? {
-        return nil
+        return UserDefaults.standard.object(forKey: "expiration_date") as? Date
     }
     
     private var shouldRefreshToken: Bool {
-        return false
+        guard let expiration_date = tokenExpirationDate else {
+            return false 
+        }
+        let fiveMin: TimeInterval = 300
+        let current_date = Date().addingTimeInterval(TimeInterval(fiveMin))
+        return current_date >= expiration_date
     }
     
     private var accessToken: String? {
-        return nil
+        return UserDefaults.standard.string(forKey: "access_token")
     }
     
     private var refreshToken: String? {
-        return nil
+        return UserDefaults.standard.string(forKey: "refresh_token")
     }
     
     public func exchangeCodeForToken(
@@ -76,7 +82,7 @@ final class AuthManager {
         }
         
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
-        let task = URLSession.shared.dataTask(with: request ) { data, _, error in
+        let task = URLSession.shared.dataTask(with: request ) {  [weak self]  data, _, error in
             guard let data = data,
                   error == nil else {
                 completion(false)
@@ -84,9 +90,9 @@ final class AuthManager {
             }
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data,
-                                                            options: .allowFragments)
-                print("SUCCESS: \(json)")
+                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                self?.cacheToken(result: result)
+                completion(true)
             } catch {
                 print(error.localizedDescription)
                 completion(false)
@@ -100,7 +106,11 @@ final class AuthManager {
         
     }
     
-    private func cacheToken() {
-        
+    private func cacheToken(result: AuthResponse) {
+        UserDefaults.standard.setValue(result.access_token, forKey: "access_token")
+        UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(result.expires_in)), forKey: "expiration_date")
+        UserDefaults.standard.setValue(result.refresh_token, forKey: "refresh_token")
+        UserDefaults.standard.setValue(result.scope, forKey: "scope")
+        UserDefaults.standard.setValue(result.token_type, forKey: "token_tyoe")
     }
 }

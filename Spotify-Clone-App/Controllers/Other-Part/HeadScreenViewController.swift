@@ -89,7 +89,19 @@ class HeadScreenViewController: UIViewController {
     
     private func handleSignIn(success: Bool) {
         // Log user or catch error
-        
+        guard success else {
+            let alert = UIAlertController(title: "Don't succeed",
+                                          message: "Something goes wrong when sign in",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss",
+                                          style: .cancel,
+                                          handler: nil))
+            present(alert, animated: true)
+            return
+        }
+        let mainAppTabBarVC = TabBarViewController()
+        mainAppTabBarVC.modalPresentationStyle = .fullScreen
+        present(mainAppTabBarVC, animated: true)
     }
     
 
