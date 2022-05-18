@@ -1,6 +1,10 @@
 # Spotify-Clone-App
 My first major project experience
 
+Login screen and tabbar.
+
+https://user-images.githubusercontent.com/101148589/168977389-a535705a-5180-423e-8f8f-a768d8be1359.mp4
+
 Second screen update! Web login screen works very well.
 
 ![Simulator Screen Recording - iPhone 13 Pro Max - 2022-05-03 at 22 53 11](https://user-images.githubusercontent.com/101148589/166556052-5e5200b4-b2a4-4041-b12d-9159cc9ad043.gif)
