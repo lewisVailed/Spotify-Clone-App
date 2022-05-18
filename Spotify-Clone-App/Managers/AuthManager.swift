@@ -16,13 +16,13 @@ final class AuthManager {
         static let clientID = "5d3e7eb22ac54d64be9c7d0fdfdc4e31"
         static let clientSecret = "e5faefe4c81d4c99b94fdd628cac3534"
         static let tokenAPIURL = "https://accounts.spotify.com/api/token"
+        static let redirectURI = "https://www.spotify.com/tr/"
+        static let scopes = "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email"
     }
     
     public var signInURL: URL? {
-        let scopes = "user-read-private"
-        let redirectURI = "https://www.spotify.com/tr/"
         let base = "https://accounts.spotify.com/authorize"
-        let main = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(scopes)&redirect_uri=\(redirectURI)&show_dialog=TRUE"
+        let main = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(Constants.scopes)&redirect_uri=\(Constants.redirectURI)&show_dialog=TRUE"
         return URL(string: main)
     }
     
@@ -64,7 +64,7 @@ final class AuthManager {
         companents.queryItems = [
             URLQueryItem(name: "grant_type", value: "authorization_code"),
             URLQueryItem(name: "code", value: code),
-            URLQueryItem(name: "redirect_uri", value: "https://www.spotify.com/tr/")
+            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI)
         ]
         
         var request = URLRequest(url: url)
@@ -101,10 +101,7 @@ final class AuthManager {
         task.resume()
     }
     
-    private func ifRefreshNeeded(completion: @escaping (Bool) -> Void) {
-        guard shouldRefreshToken else {
-            return
-        }
+    public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
         guard let refreshToken = self.refreshToken else {
             return
         }

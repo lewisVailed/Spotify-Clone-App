@@ -18,6 +18,7 @@ class TabBarViewController: UITabBarController {
         viewC1.title = "Home"
         viewC2.title = "Search"
         viewC3.title = "Library"
+        
         viewC1.navigationItem.largeTitleDisplayMode = .always
         viewC2.navigationItem.largeTitleDisplayMode = .always
         viewC3.navigationItem.largeTitleDisplayMode = .always
