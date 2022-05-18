@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 final class AuthManager {
     static let shared = AuthManager()
@@ -28,7 +27,7 @@ final class AuthManager {
     }
     
     var isSignedIn: Bool {
-        return accessToken != nil
+        return false
     }
     
     private var tokenExpirationDate: Date? {
@@ -41,7 +40,7 @@ final class AuthManager {
         }
         let fiveMin: TimeInterval = 300
         let current_date = Date().addingTimeInterval(TimeInterval(fiveMin))
-        return current_date >= expiration_date
+        return current_date.addingTimeInterval(TimeInterval(fiveMin)) >= expiration_date
     }
     
     private var accessToken: String? {
@@ -109,8 +108,6 @@ final class AuthManager {
     private func cacheToken(result: AuthResponse) {
         UserDefaults.standard.setValue(result.access_token, forKey: "access_token")
         UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(result.expires_in)), forKey: "expiration_date")
-        UserDefaults.standard.setValue(result.refresh_token, forKey: "refresh_token")
-        UserDefaults.standard.setValue(result.scope, forKey: "scope")
-        UserDefaults.standard.setValue(result.token_type, forKey: "token_tyoe")
+       
     }
 }
