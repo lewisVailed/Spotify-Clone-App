@@ -42,6 +42,7 @@ class HeadScreenViewController: UIViewController {
         view.backgroundColor = spotifyGreen
         view.addSubview(signInButton)
         view.addSubview(myLightImageView)
+        
         // this is not working
         /* if view.overrideUserInterfaceStyle == .dark {
             view.addSubview(myDarkImageView)

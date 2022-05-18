@@ -27,7 +27,7 @@ final class AuthManager {
     }
     
     var isSignedIn: Bool {
-        return false
+        return accessToken != nil
     }
     
     private var tokenExpirationDate: Date? {
@@ -39,8 +39,8 @@ final class AuthManager {
             return false 
         }
         let fiveMin: TimeInterval = 300
-        let current_date = Date().addingTimeInterval(TimeInterval(fiveMin))
-        return current_date.addingTimeInterval(TimeInterval(fiveMin)) >= expiration_date
+        let current_date = Date()
+        return current_date.addingTimeInterval(fiveMin) >= expiration_date
     }
     
     private var accessToken: String? {
@@ -50,7 +50,7 @@ final class AuthManager {
     private var refreshToken: String? {
         return UserDefaults.standard.string(forKey: "refresh_token")
     }
-    
+     
     public func exchangeCodeForToken(
         code: String,
         completion: @escaping ((Bool) -> Void)
@@ -81,7 +81,7 @@ final class AuthManager {
         }
         
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
-        let task = URLSession.shared.dataTask(with: request ) {  [weak self]  data, _, error in
+        let task = URLSession.shared.dataTask(with: request) {  [weak self]  data, _, error in
             guard let data = data,
                   error == nil else {
                 completion(false)
@@ -92,21 +92,74 @@ final class AuthManager {
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
                 self?.cacheToken(result: result)
                 completion(true)
+                
             } catch {
                 print(error.localizedDescription)
                 completion(false)
             }
-            
         }
         task.resume()
     }
     
-    public func refreshAccessToken() {
+    private func ifRefreshNeeded(completion: @escaping (Bool) -> Void) {
+        guard shouldRefreshToken else {
+            return
+        }
+        guard let refreshToken = self.refreshToken else {
+            return
+        }
+        // refresh the token
         
+        guard let url = URL(string: Constants.tokenAPIURL) else {
+            return
+        }
+        
+        var companents = URLComponents()
+        companents.queryItems = [
+            URLQueryItem(name: "grant_type", value: "refresh_token"),
+            URLQueryItem(name: "refresh_token", value: refreshToken)
+        ]
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = companents.query?.data(using: .utf8)
+        
+        let basicToken = Constants.clientID+":"+Constants.clientSecret
+        let data = basicToken.data(using: .utf8)
+        guard let base64String = data?.base64EncodedString() else {
+            print("Failure to get base64")
+            completion(false)
+            return
+        }
+        
+        request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
+        let task = URLSession.shared.dataTask(with: request) {  [weak self]  data, _, error in
+            guard let data = data,
+                  error == nil else {
+                completion(false)
+                return
+            }
+            
+            do {
+                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                print("Successfully refreshed")
+                self?.cacheToken(result: result)
+                completion(true)
+                
+            } catch {
+                print(error.localizedDescription)
+                completion(false)
+            }
+        }
+        task.resume()
     }
     
     private func cacheToken(result: AuthResponse) {
         UserDefaults.standard.setValue(result.access_token, forKey: "access_token")
+        if let refresh_token = result.refresh_token {
+            UserDefaults.standard.setValue(refresh_token, forKey: "refresh_token")
+        }
         UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(result.expires_in)), forKey: "expiration_date")
        
     }
