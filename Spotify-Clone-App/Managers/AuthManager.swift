@@ -20,6 +20,8 @@ final class AuthManager {
         static let scopes = "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email"
     }
     
+    private var refreshingToken = false
+    
     public var signInURL: URL? {
         let base = "https://accounts.spotify.com/authorize"
         let main = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(Constants.scopes)&redirect_uri=\(Constants.redirectURI)&show_dialog=TRUE"
@@ -82,6 +84,7 @@ final class AuthManager {
         
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
         let task = URLSession.shared.dataTask(with: request) {  [weak self]  data, _, error in
+            self?.refreshingToken = false
             guard let data = data,
                   error == nil else {
                 completion(false)
@@ -101,7 +104,35 @@ final class AuthManager {
         task.resume()
     }
     
+    private var onRefresingBlock = [((String) -> Void)]()
+    
+    public func withValidToken(completion: @escaping (String) -> Void) {
+        guard !refreshingToken else {
+            onRefresingBlock.append(completion)
+           // completion()
+            return
+        }
+        if shouldRefreshToken {
+            refreshIfNeeded { [weak self] success in
+                if let token = self?.accessToken {
+                    completion(token)
+                }
+            }
+        } else if let token = accessToken {
+            completion(token)
+        }
+    }
+    
     public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
+        guard !refreshingToken else {
+            return
+        }
+        
+        guard shouldRefreshToken else {
+            completion(true)
+            return
+        }
+        
         guard let refreshToken = self.refreshToken else {
             return
         }
@@ -110,6 +141,8 @@ final class AuthManager {
         guard let url = URL(string: Constants.tokenAPIURL) else {
             return
         }
+        
+        refreshingToken = true
         
         var companents = URLComponents()
         companents.queryItems = [
@@ -140,7 +173,8 @@ final class AuthManager {
             
             do {
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
-                print("Successfully refreshed")
+                self?.onRefresingBlock.forEach { $0(result.access_token) }
+                self?.onRefresingBlock.removeAll()
                 self?.cacheToken(result: result)
                 completion(true)
                 
