@@ -174,8 +174,8 @@
 		D78F9DDD281E9C690002A541 /* Core-Part */ = {
 			isa = PBXGroup;
 			children = (
-				D73B9AFE281E94EE005C376A /* HomeViewController.swift */,
 				D78F9DD6281E9BC60002A541 /* TabBarViewController.swift */,
+				D73B9AFE281E94EE005C376A /* HomeViewController.swift */,
 				D78F9DD9281E9C2B0002A541 /* SearchViewController.swift */,
 				D78F9DDB281E9C4C0002A541 /* LibraryViewController.swift */,
 			);

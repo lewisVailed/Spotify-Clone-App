@@ -29,12 +29,7 @@ final class APICaller {
                     return
                 }
 
-                do {
-                    let result = JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                    print(result)
-                } catch {
-                    completion(.failure(error))
-                }
+                
                 
             }
         }
