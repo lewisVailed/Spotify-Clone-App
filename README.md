@@ -4,23 +4,8 @@ A fully-featured music streaming application that replicates the core functional
 
 [![Swift](https://img.shields.io/badge/Swift-5.0+-FA7343?style=flat&logo=swift&logoColor=white)](https://swift.org)
 [![iOS](https://img.shields.io/badge/iOS-14.0+-000000?style=flat&logo=apple&logoColor=white)](https://www.apple.com/ios)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## 📸 Screenshots
-
-<!-- Add your screenshots here -->
-<!-- Example: -->
-![Home](<img width="1170" height="2532" alt="Simulator Screenshot - iPhone 13 - 2025-11-11 at 02 25 15" src="https://github.com/user-attachments/assets/e22b9e21-266c-4aa7-8dc6-56558790e96d" />
-)
-![Home](<img width="1170" height="2532" alt="Simulator Screenshot - iPhone 13 - 2025-11-11 at 02 25 15" src="https://github.com/user-attachments/assets/e22b9e21-266c-4aa7-8dc6-56558790e96d" />
-)
-![Home](<img width="1170" height="2532" alt="Simulator Screenshot - iPhone 13 - 2025-11-11 at 02 25 15" src="https://github.com/user-attachments/assets/e22b9e21-266c-4aa7-8dc6-56558790e96d" />
-)
-![Home](<img width="1170" height="2532" alt="Simulator Screenshot - iPhone 13 - 2025-11-11 at 02 25 15" src="https://github.com/user-attachments/assets/e22b9e21-266c-4aa7-8dc6-56558790e96d" />
-)
-![Home](<img width="1170" height="2532" alt="Simulator Screenshot - iPhone 13 - 2025-11-11 at 02 25 15" src="https://github.com/user-attachments/assets/e22b9e21-266c-4aa7-8dc6-56558790e96d" />
-)
-<!-- ![Home Screen](screenshots/home.png) ![Search](screenshots/search.png) ![Player](screenshots/player.png) -->
 
 *Screenshots coming soon - working on capturing the best views!*
 
@@ -136,10 +121,6 @@ Building this project helped me develop strong skills in:
 - Some API rate limits may affect search performance
 - Playback may require Spotify Premium account
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - [Spotify Web API](https://developer.spotify.com/documentation/web-api/) - For providing the music data
@@ -149,7 +130,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📧 Contact
 
 Ayberk Bilgiç
-- LinkedIn: [ayberkbilgic](https://linkedin.com/in/ayberkbilgic)
+- LinkedIn: [ayberkbilgic](https://www.linkedin.com/in/ayberk-bilgiç-2756b4255/)
 - Email: ayberkbilgic@outlook.com
 - GitHub: [@lewisVailed](https://github.com/lewisVailed)
 
